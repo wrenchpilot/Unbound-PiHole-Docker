@@ -6,6 +6,11 @@ LABEL image="wrenchilot/unbound-pihole:4.3.2_ubuntu"
 LABEL maintainer="shawn@floatingboy.org"
 LABEL url="https://github.com/wrenchpilot/Unbound-PiHole-Docker"
 
+##  Environment
+ENV IPv6 False
+ENV VERSION v4.3.2
+ENV ARCH amd64
+
 ##  Create user
 RUN useradd -ms /bin/bash installer
 
@@ -25,18 +30,8 @@ EXPOSE 443
 COPY pi-hole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
 COPY resolv.conf /etc/resolv.conf
 
-##  Copy install script
-COPY install.sh /install.sh
-RUN chmod +x /install.sh
-
-##  IPv6 disable flag for networks/devices that do not support it
-ENV IPv6 False
-ENV VERSION v4.3.2
-ENV ARCH amd64
-
-##  Install
-ENTRYPOINT ["/install.sh"]
-CMD ["/install.sh"]
+RUN git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
+RUN "/Pi-hole/automated install/basic-install.sh"
 
 ##  Test unbound
 HEALTHCHECK CMD dig @127.0.0.1 pi.hole -p 5353 || exit 1
