@@ -3,7 +3,6 @@
 docker run -d \
     --user=root \
     --name pihole \
-    --net=host \
     --cap-add=NET_ADMIN \
     --cap-add=NET_BIND_SERVICE \
     --restart=unless-stopped \
