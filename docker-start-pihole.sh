@@ -11,7 +11,7 @@ docker run -d \
     -p 5353:5353/tcp \
     -p 80:80 \
     -p 443:443 \
-    wrenchilot/unbound-pihole:4.3.2_ubuntu
+    wrenchpilot/unbound-pihole:4.3.2_ubuntu
 
 printf 'Starting up pihole container '
 for i in $(seq 1 20); do

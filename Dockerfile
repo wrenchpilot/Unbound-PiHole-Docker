@@ -1,6 +1,11 @@
 #Download base image ubuntu 18.04
 FROM ubuntu:18.04
 
+# Labels
+LABEL image="wrenchilot/unbound-pihole:4.3.2_ubuntu"
+LABEL maintainer="shawn@floatingboy.org"
+LABEL url="https://github.com/wrenchpilot/Unbound-PiHole-Docker"
+
 # Create user
 RUN useradd -ms /bin/bash installer
 
@@ -31,14 +36,8 @@ RUN chmod +x /install.sh
 
 # IPv6 disable flag for networks/devices that do not support it
 ENV IPv6 False
-
 ENV VERSION v4.3.2
 ENV ARCH amd64
-
-# Labels
-LABEL image="wrenchilot/unbound-pihole:4.3.2_ubuntu"
-LABEL maintainer="shawn@floatingboy.org"
-LABEL url="https://github.com/wrenchpilot/Unbound-PiHole-Docker"
 
 # Install
 ENTRYPOINT ["/install.sh"]
