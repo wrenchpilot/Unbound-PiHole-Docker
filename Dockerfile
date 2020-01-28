@@ -13,7 +13,7 @@ RUN useradd -ms /bin/bash installer
 RUN apt-get update
 
 ##  Install software
-RUN apt-get install -y unbound net-tools nano wget curl procps ca-certificates git
+RUN apt-get install -y unbound net-tools nano wget curl procps ca-certificates git apt-utils
 
 EXPOSE 53/tcp 53/udp
 EXPOSE 5353/tcp 5353/udp
