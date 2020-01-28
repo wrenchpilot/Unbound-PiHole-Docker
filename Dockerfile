@@ -13,8 +13,7 @@ RUN apt-get upgrade -y
 # Install software
 RUN apt-get install -y unbound net-tools nano wget curl procps ca-certificates git
 
-# IPv6 disable flag for networks/devices that do not support it
-ENV IPv6 False
+
 
 EXPOSE 53/tcp 53/udp
 EXPOSE 5353/tcp 5353/udp
@@ -30,7 +29,9 @@ COPY resolv.conf /etc/resolv.conf
 COPY install.sh /install.sh
 RUN chmod +x /install.sh
 
-# Env
+# IPv6 disable flag for networks/devices that do not support it
+ENV IPv6 False
+
 ENV VERSION v4.3.2
 ENV ARCH amd64
 
